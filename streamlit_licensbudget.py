@@ -27,7 +27,7 @@ st.write('Formålet med denne lille app er at give et hurtigt overblik over hvor
 st.write('For at bruge appen skal du have en fil trukket fra Regnskabsportalen i .XLS format samt et estimat af hvor mange penge institutionen bruger på UNGLI licenser (dette kan formentlig aflæses i ConsortiaManager)')
 st.write('Upload og indtast informationen til venstre.')
 
-st.subheader('Analyserer fil "' + filename + '"')
+st.header('Analyserer fil "' + filename + '"')
 
 df = load_data(file)
 #transponér så rækker fra excel passer med kolonner i pandas
