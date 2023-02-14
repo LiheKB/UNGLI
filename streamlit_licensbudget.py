@@ -54,7 +54,7 @@ metrik3 = gennemforelse/taxameter*100
 
 col1, col2, col3 = st.columns(3)
 col1.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser', value = str(metrik1)+ "%")
-col2.metric('Andel af undervisningstaxameter der består af UNGLI licenser', value = metrik2 + "%")
-col3.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger"', value = metrik3 + "%")
+col2.metric('Andel af undervisningstaxameter der består af UNGLI licenser', value = str(metrik2) + "%")
+col3.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger"', value = str(metrik3) + "%")
 
 st.ballons()
