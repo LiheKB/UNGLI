@@ -10,7 +10,7 @@ st.set_page_config(page_title='Dyvekes UNGLI app', page_icon="appikon.jpg", layo
 
 file = filename = 'Regnskabsdata.XLS'
 st.sidebar.subheader('Indlæs din regnskabsdata fil')
-uploaded_file = st.sidebar.file_uploader("Skal være excel fil")#, type = 'xlsx')
+uploaded_file = st.sidebar.file_uploader("Downloades fra https://regnskabsportal.uvm.dk/Accounts/Search.aspx?sm=4.1")#, type = 'xlsx')
 st.sidebar.subheader('Indtast UNGLI information')
 UNGLI_belob = st.sidebar.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)')
 
