@@ -58,4 +58,4 @@ col1.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der
 col2.metric('Andel af undervisningstaxameter der består af UNGLI licenser', value = str(metrik2) + "%")
 col3.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger"', value = str(metrik3) + "%")
 
-st.ballons()
+st.balloons()
