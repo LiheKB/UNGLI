@@ -19,7 +19,7 @@ if uploaded_file is not None:
     filename = uploaded_file.name
 
 def load_data(file):
-    st.write("Ny fil indlæst")
+    #st.write("Ny fil indlæst")
     return pd.read_excel(file, skiprows = 4, usecols = [1,4])
 
 st.header('Analyserer fil "' + filename + '"')
