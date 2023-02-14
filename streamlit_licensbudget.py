@@ -22,7 +22,12 @@ def load_data(file):
     #st.write("Ny fil indlæst")
     return pd.read_excel(file, skiprows = 4, usecols = [1,4])
 
-st.header('Analyserer fil "' + filename + '"')
+st.title('Dyvekes UNGLI app')
+st.write('Formålet med denne lille app er at give et hurtigt overblik over hvor meget UNGLI licenser fylder i budgettet for en given institution.')
+st.write('For at bruge appen skal du have en fil trukket fra Regnskabsportalen i .XLS format samt et estimat af hvor mange penge institutionen bruger på UNGLI licenser (dette kan formentlig aflæses i ConsortiaManager)')
+st.write('Upload og indtast informationen til venstre.')
+
+st.subheader('Analyserer fil "' + filename + '"')
 
 df = load_data(file)
 #transponér så rækker fra excel passer med kolonner i pandas
@@ -53,10 +58,10 @@ metrik2 = np.round(UNGLI_belob/taxameter*100,3)
 
 metrik3 = np.round(gennemforelse/taxameter*100,3)
 
-#col1, col2, col3 = st.columns(3)
-#col1.write('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser')
-st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser', value = str(metrik1)+ "%")
-st.metric('Andel af undervisningstaxameter der består af UNGLI licenser', value = str(metrik2) + "%")
-st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger"', value = str(metrik3) + "%")
+st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
+
+st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser:', value = str(metrik1)+ "%")
+st.metric('Andel af undervisningstaxameter der består af UNGLI licenser:', value = str(metrik2) + "%")
+st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger":', value = str(metrik3) + "%")
 
 st.balloons()
