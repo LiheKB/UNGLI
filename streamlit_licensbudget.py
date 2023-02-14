@@ -53,10 +53,10 @@ metrik2 = np.round(UNGLI_belob/taxameter*100,3)
 
 metrik3 = np.round(gennemforelse/taxameter*100,3)
 
-col1, col2, col3 = st.columns(3)
-col1.write('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser')
-col1.metric( value = str(metrik1)+ "%")
-col2.metric('Andel af undervisningstaxameter der består af UNGLI licenser', value = str(metrik2) + "%")
-col3.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger"', value = str(metrik3) + "%")
+#col1, col2, col3 = st.columns(3)
+#col1.write('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser')
+st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser', value = str(metrik1)+ "%")
+st.metric('Andel af undervisningstaxameter der består af UNGLI licenser', value = str(metrik2) + "%")
+st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger"', value = str(metrik3) + "%")
 
 st.balloons()
