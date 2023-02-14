@@ -46,11 +46,11 @@ gennemforelse = df.iloc[0]['Undervisningens gennemførelse , Øvrige omkostninge
 ## 2) udgift til UNGLI divideret med undervisningstaxameter
 ## 3) Undervisningens gennemførelse divideret med taxameter
 
-metrik1 = UNGLI_belob/gennemforelse*100
+metrik1 = np.round(UNGLI_belob/gennemforelse*100,3)
 
-metrik2 = UNGLI_belob/taxameter*100
+metrik2 = np.round(UNGLI_belob/taxameter*100,3)
 
-metrik3 = gennemforelse/taxameter*100
+metrik3 = np.round(gennemforelse/taxameter*100,3)
 
 col1, col2, col3 = st.columns(3)
 col1.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser', value = str(metrik1)+ "%")
