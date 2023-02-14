@@ -7,7 +7,7 @@ st.set_page_config(page_title='Dyvekes UNGLI app', page_icon="appikon.jpg", layo
 
 
 
-file = filename = r'C:/Users/lihe/Downloads/Regnskabsdata.xls'
+file = filename = r'Regnskabsdata.xls'
 st.sidebar.subheader('Indlæs din regnskabsdata fil')
 uploaded_file = st.sidebar.file_uploader("Skal være excel fil")#, type = 'xlsx')
 st.sidebar.subheader('Indtast UNGLI information')
