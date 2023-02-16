@@ -64,4 +64,4 @@ st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der b
 st.metric('Andel af undervisningstaxameter der består af UNGLI licenser:', value = str(metrik2) + "%")
 st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger":', value = str(metrik3) + "%")
 
-st.balloons()
+#st.balloons()
