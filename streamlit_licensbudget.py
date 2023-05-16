@@ -4,7 +4,7 @@ import numpy as np
 #import matplotlib.pyplot as plt
 #import streamlit.components.v1 as components
 
-st.set_page_config(page_title='Dyvekes UNGLI app', page_icon="appikon.jpg", layout='centered', initial_sidebar_state="expanded")
+st.set_page_config(page_title='UNGLI institutionsøkonomi analyse', page_icon="appikon.jpg", layout='centered', initial_sidebar_state="expanded")
 
 
 
