@@ -22,7 +22,7 @@ def load_data(file):
     #st.write("Ny fil indlæst")
     return pd.read_excel(file, skiprows = 4, usecols = [1,4])
 
-st.title('Dyvekes UNGLI app')
+st.title('UNGLI institutionsøkonomi analyse')
 st.write('Formålet med denne lille app er at give et hurtigt overblik over hvor meget UNGLI licenser fylder i budgettet for en given institution.')
 st.write('For at bruge appen skal du have en fil trukket fra Regnskabsportalen i .XLS format samt et estimat af hvor mange penge institutionen bruger på UNGLI licenser (dette kan formentlig aflæses i ConsortiaManager)')
 st.write('Upload og indtast informationen til venstre.')
