@@ -20,7 +20,7 @@ if uploaded_file is not None:
 
 def load_data(file):
     #st.write("Ny fil indlæst")
-    return pd.read_excel(file, skiprows = 4, usecols = [1,4])
+    return pd.read_excel(file, skiprows = 4, usecols = [1,4,5])
 
 st.title('UNGLI institutionsøkonomi analyse')
 st.write('Formålet med denne lille app er at give et hurtigt overblik over hvor meget UNGLI licenser fylder i budgettet for en given institution.')
@@ -35,7 +35,6 @@ df = df.T
 #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
 df.columns = df.iloc[0]
 df = df.drop(df.index[0])
-st.write('antal kolonner', str(df.columns))
 
 ### data manipulering, hent info vi skal bruge ###
 #institutionsnummer og navn
