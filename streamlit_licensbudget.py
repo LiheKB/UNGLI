@@ -36,6 +36,9 @@ df = df.T
 df.columns = df.iloc[0]
 df = df.drop(df.index[0])
 st.write('antal kolonner', str(len(df.columns)))
+for i in range(len(df.columns)):
+    if df.iloc[i]['Institutions nummer:'] is not None:
+        st.write('Skriv alle institutioner', str(df.iloc[i]['Institutions nummer:']))
 
 ### data manipulering, hent info vi skal bruge ###
 #institutionsnummer og navn
