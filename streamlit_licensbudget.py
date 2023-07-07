@@ -72,7 +72,7 @@ if uploaded_files is not None:
     else:
         st.header('Analyserer fil "' + filename + '"')
 
-        df = load_multiple(file, num_inst = 1)
+        df = load_multiple(file)
         #transponér så rækker fra excel passer med kolonner i pandas
         df = df.T
         #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
