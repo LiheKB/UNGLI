@@ -38,16 +38,16 @@ if uploaded_files is not None:
 
         st.header('Analyserer fil "' + filename + '"')
 
-        df = load_multiple(file, num_inst = 1)
+        df = load_multiple(file)
         #transponér så rækker fra excel passer med kolonner i pandas
         df = df.T
         #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
         df.columns = df.iloc[0]
         df = df.drop(df.index[0])
 
+        i = 0
         ### data manipulering, hent info vi skal bruge ###
         #institutionsnummer og navn
-        i = 0
         inst_num = df.iloc[i]['Institutions nummer:']
         inst_navn = df.iloc[i][1]
 
