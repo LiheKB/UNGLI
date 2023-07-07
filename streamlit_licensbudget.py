@@ -35,41 +35,75 @@ if uploaded_files is not None:
     for uploaded_file in uploaded_files:
         filename = uploaded_file.name
         file = uploaded_file
-    st.header('Analyserer fil "' + filename + '"')
 
-    df = load_multiple(file)
-    #transponér så rækker fra excel passer med kolonner i pandas
-    df = df.T
-    #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
-    df.columns = df.iloc[0]
-    df = df.drop(df.index[0])
+        st.header('Analyserer fil "' + filename + '"')
 
-    ### data manipulering, hent info vi skal bruge ###
-    #institutionsnummer og navn
-    inst_num = df.iloc[0]['Institutions nummer:']
-    inst_navn = df.iloc[0][1]
+        df = load_multiple(file, num_inst = 1)
+        #transponér så rækker fra excel passer med kolonner i pandas
+        df = df.T
+        #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
+        df.columns = df.iloc[0]
+        df = df.drop(df.index[0])
 
-    #Taxameter
-    taxameter = df.iloc[0]['Undervisningstaxameter']
+        ### data manipulering, hent info vi skal bruge ###
+        #institutionsnummer og navn
+        i = 0
+        inst_num = df.iloc[i]['Institutions nummer:']
+        inst_navn = df.iloc[i][1]
 
-    #undervisningsgennemførelse, budgettet licenser kommer fra?
-    gennemforelse = df.iloc[0]['Undervisningens gennemførelse , Øvrige omkostninger']
+        #Taxameter
+        taxameter = df.iloc[i]['Undervisningstaxameter']
 
-### Vi vil gerne have tre metrikker: 
-## 1) udgift til UNGLI divideret med "Undervisningens gennemførelse..."
-## 2) udgift til UNGLI divideret med undervisningstaxameter
-## 3) Undervisningens gennemførelse divideret med taxameter
+        #undervisningsgennemførelse, budgettet licenser kommer fra?
+        gennemforelse = df.iloc[i]['Undervisningens gennemførelse , Øvrige omkostninger']
 
-    metrik1 = np.round(UNGLI_belob/gennemforelse*100,3)
+        metrik1 = np.round(UNGLI_belob/gennemforelse*100,3)
 
-    metrik2 = np.round(UNGLI_belob/taxameter*100,3)
+        metrik2 = np.round(UNGLI_belob/taxameter*100,3)
 
-    metrik3 = np.round(gennemforelse/taxameter*100,3)
+        metrik3 = np.round(gennemforelse/taxameter*100,3)
 
-    st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
+        st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
 
-    st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser:', value = str(metrik1)+ "%")
-    st.metric('Andel af undervisningstaxameter der består af UNGLI licenser:', value = str(metrik2) + "%")
-    st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger":', value = str(metrik3) + "%")
+        st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser:', value = str(metrik1)+ "%")
+        st.metric('Andel af undervisningstaxameter der består af UNGLI licenser:', value = str(metrik2) + "%")
+        st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger":', value = str(metrik3) + "%")
+        i += 1
+    else:
+        st.header('Analyserer fil "' + filename + '"')
 
-#st.balloons()
+        df = load_multiple(file, num_inst = 1)
+        #transponér så rækker fra excel passer med kolonner i pandas
+        df = df.T
+        #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
+        df.columns = df.iloc[0]
+        df = df.drop(df.index[0])
+
+        ### data manipulering, hent info vi skal bruge ###
+        #institutionsnummer og navn
+        inst_num = df.iloc[0]['Institutions nummer:']
+        inst_navn = df.iloc[0][1]
+
+        #Taxameter
+        taxameter = df.iloc[0]['Undervisningstaxameter']
+
+        #undervisningsgennemførelse, budgettet licenser kommer fra?
+        gennemforelse = df.iloc[0]['Undervisningens gennemførelse , Øvrige omkostninger']
+
+    ### Vi vil gerne have tre metrikker: 
+    ## 1) udgift til UNGLI divideret med "Undervisningens gennemførelse..."
+    ## 2) udgift til UNGLI divideret med undervisningstaxameter
+    ## 3) Undervisningens gennemførelse divideret med taxameter
+
+        metrik1 = np.round(UNGLI_belob/gennemforelse*100,3)
+
+        metrik2 = np.round(UNGLI_belob/taxameter*100,3)
+
+        metrik3 = np.round(gennemforelse/taxameter*100,3)
+
+        st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
+
+        st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser:', value = str(metrik1)+ "%")
+        st.metric('Andel af undervisningstaxameter der består af UNGLI licenser:', value = str(metrik2) + "%")
+        st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger":', value = str(metrik3) + "%")
+
