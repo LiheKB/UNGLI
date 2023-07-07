@@ -9,7 +9,7 @@ st.set_page_config(page_title='UNGLI institutionsøkonomi analyse', page_icon="a
 file = filename = 'Regnskabsdata.XLS'
 st.sidebar.subheader('Indlæs din regnskabsdata fil')
 uploaded_files = st.sidebar.file_uploader("Downloades fra https://regnskabsportal.uvm.dk/Accounts/Search.aspx?sm=4.1", accept_multiple_files=True)#, type = 'xlsx')
-antal_inst = st.number_input(label = 'Hvor mange institutioner er der i filerne?', min_value = 1, max_value=10)
+antal_inst = int(st.sidebar.number_input(label = 'Hvor mange institutioner er der i filerne?', min_value = 1, max_value=10))
 
 st.sidebar.subheader('Indtast UNGLI information')
 UNGLI_belob = st.sidebar.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)')
