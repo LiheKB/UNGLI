@@ -39,6 +39,8 @@ if uploaded_files is not None:
 
         st.header('Analyserer fil "' + filename + '"')
 
+        CM_belob = st.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)')
+
         df = load_multiple(file)
         #transponér så rækker fra excel passer med kolonner i pandas
         df = df.T
@@ -58,9 +60,9 @@ if uploaded_files is not None:
         #undervisningsgennemførelse, budgettet licenser kommer fra?
         gennemforelse = df.iloc[i]['Undervisningens gennemførelse , Øvrige omkostninger']
 
-        metrik1 = np.round(UNGLI_belob/gennemforelse*100,3)
+        metrik1 = np.round(CM_belob/gennemforelse*100,3)
 
-        metrik2 = np.round(UNGLI_belob/taxameter*100,3)
+        metrik2 = np.round(CM_belob/taxameter*100,3)
 
         metrik3 = np.round(gennemforelse/taxameter*100,3)
 
