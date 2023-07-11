@@ -19,8 +19,9 @@ UNGLI_belob = st.sidebar.number_input('Indtast det beløb institutionen bruger p
 #    filename = uploaded_file.name
 
 def load_multiple(file, num_inst = antal_inst):
+    start_cols = [1]
     mult_cols = np.arange(start = 4, stop = 4 + num_inst)
-    mult_cols = mult_cols.tolist()
+    mult_cols = np.append(start_cols, mult_cols)
     return pd.read_excel(file, skiprows=4, usecols= mult_cols)
 
 def load_data(file):
