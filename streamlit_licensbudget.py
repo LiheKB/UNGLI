@@ -9,7 +9,7 @@ st.set_page_config(page_title='UNGLI institutionsøkonomi analyse', page_icon="a
 file = filename = 'Regnskabsdata.XLS'
 st.sidebar.subheader('Indlæs din regnskabsdata fil')
 uploaded_files = st.sidebar.file_uploader("Downloades fra https://regnskabsportal.uvm.dk/Accounts/Search.aspx?sm=4.1", accept_multiple_files=True)#, type = 'xlsx')
-
+antal_inst = st.sidebar.number_input('Indtast antal institutioner i filen', min_value = 1)
 st.sidebar.subheader('Indtast UNGLI information')
 UNGLI_belob = st.sidebar.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)')
 
@@ -44,8 +44,6 @@ if uploaded_files is not None:
         #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
         df.columns = df.iloc[0]
         df = df.drop(df.index[0])
-
-        antal_inst = len(df.index)
 
         CM_info = pd.DataFrame([
             {"institutionsnummer" : df['Institutions nummer: ']}, 
