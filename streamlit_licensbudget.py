@@ -36,10 +36,8 @@ if uploaded_files is not None:
     for uploaded_file in uploaded_files:
         filename = uploaded_file.name
         file = uploaded_file
-
+        st.write('det virkede med flere columns')
         st.header('Analyserer fil "' + filename + '"')
-
-        CM_belob = int(st.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)'))
 
         df = load_multiple(file)
         #transponér så rækker fra excel passer med kolonner i pandas
