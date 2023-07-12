@@ -48,7 +48,7 @@ if uploaded_files is not None:
         CM_info = pd.DataFrame([
             {"institutionsnummer" : (df['Institutions nummer:']).to_numpy()}, 
             {"institutionsnavn" : (df.iloc[:,1]).to_numpy()},
-            {'CM beløb' : np.ones(antal_inst)}
+            {'CM beløb' : np.ones(antal_inst)},
         ])
 
         edited_CM = st.data_editor(CM_info, column_config={
