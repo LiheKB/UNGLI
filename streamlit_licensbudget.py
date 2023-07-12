@@ -33,10 +33,11 @@ st.write('For at bruge appen skal du have en fil trukket fra Regnskabsportalen i
 st.write('Upload og indtast informationen til venstre.')
 
 if uploaded_files is not None:
+    st.write("Ny fil uploadet.")
     for uploaded_file in uploaded_files:
+        st.write("Når vi hertil?")
         filename = uploaded_file.name
         file = uploaded_file
-        st.write('det virkede med flere columns')
         st.header('Analyserer fil "' + filename + '"')
 
         df = load_multiple(file)
