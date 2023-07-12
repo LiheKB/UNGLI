@@ -39,7 +39,7 @@ if uploaded_files is not None:
 
         st.header('Analyserer fil "' + filename + '"')
 
-        CM_belob = st.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)')
+        CM_belob = int(st.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)'))
 
         df = load_multiple(file)
         #transponér så rækker fra excel passer med kolonner i pandas
