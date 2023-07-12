@@ -35,12 +35,12 @@ st.write('Upload og indtast informationen til venstre.')
 if uploaded_files is not None:
     st.write("Ny fil uploadet.")
     for uploaded_file in uploaded_files:
-        st.write("Når vi hertil?")
         filename = uploaded_file.name
         file = uploaded_file
         st.header('Analyserer fil "' + filename + '"')
-
+        ##her går den i ståå??
         df = load_multiple(file)
+        st.write("'Når vi hertil?")
         #transponér så rækker fra excel passer med kolonner i pandas
         df = df.T
         #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
