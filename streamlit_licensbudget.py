@@ -44,7 +44,6 @@ if uploaded_files is not None:
         #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
         df.columns = df.iloc[0]
         df = df.drop(df.index[0])
-<<<<<<< HEAD
 
         antal_inst = len(df.index)
 
@@ -63,9 +62,6 @@ if uploaded_files is not None:
             min_value=1,
         ),
     })
-=======
-        st.write("Når vi at indeksere rigtigt??")
->>>>>>> 0607daaf42b9d446da2fe50baf3a581fb34c3599
         i = 0
         ### data manipulering, hent info vi skal bruge ###
         #institutionsnummer og navn
