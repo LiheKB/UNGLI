@@ -44,7 +44,6 @@ if uploaded_files is not None:
         #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
         df.columns = df.iloc[0]
         df = df.drop(df.index[0])
-        st.write(df)
 
         CM_info = pd.DataFrame([
             {"institutionsnummer" : (df['Institutions nummer:']).to_numpy()}, 
