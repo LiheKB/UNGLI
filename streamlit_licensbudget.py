@@ -46,8 +46,8 @@ if uploaded_files is not None:
         df = df.drop(df.index[0])
 
         CM_info = pd.DataFrame([
-            {"institutionsnummer" : (df['Institutions nummer:']).values()}, 
-            {"institutionsnavn" : df.iloc[:,1]},
+            {"institutionsnummer" : (df['Institutions nummer:']).to_numpy()}, 
+            {"institutionsnavn" : (df.iloc[:,1]).to_numpy()},
             {'CM beløb' : np.ones(antal_inst)}
         ])
 
