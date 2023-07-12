@@ -46,13 +46,13 @@ if uploaded_files is not None:
         #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
         df.columns = df.iloc[0]
         df = df.drop(df.index[0])
-
+        st.write("Når vi at indeksere rigtigt??")
         i = 0
         ### data manipulering, hent info vi skal bruge ###
         #institutionsnummer og navn
         inst_num = df.iloc[i]['Institutions nummer:']
         inst_navn = df.iloc[i][1]
-
+        st.write("henter vi værdier korrekt?")
         #Taxameter
         taxameter = df.iloc[i]['Undervisningstaxameter']
 
