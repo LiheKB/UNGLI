@@ -46,7 +46,7 @@ if uploaded_files is not None:
         df = df.drop(df.index[0])
 
         CM_info = pd.DataFrame([
-            {"institutionsnummer" : df['Institutions nummer: ']}, 
+            {"institutionsnummer" : df['Institutions nummer:']}, 
             {"institutionsnavn" : df.iloc[:,1]},
             {'CM beløb' : np.ones(antal_inst)}
         ])
@@ -59,31 +59,39 @@ if uploaded_files is not None:
             help="Indtast antal kroner brugt på UNGLI licenser.",
             min_value=1,
         ),
-    })
-        i = 0
+        }, hide_index = True,
+    )
         ### data manipulering, hent info vi skal bruge ###
         #institutionsnummer og navn
-        inst_num = df.iloc[i]['Institutions nummer:']
-        inst_navn = df.iloc[i][1]
-        st.write("henter vi værdier korrekt?")
+        inst_num = df['Institutions nummer:']
+        inst_navn = df.iloc[:,1]
         #Taxameter
-        taxameter = df.iloc[i]['Undervisningstaxameter']
+        taxameter = (df['Undervisningstaxameter']).to_numpy()
 
         #undervisningsgennemførelse, budgettet licenser kommer fra?
-        gennemforelse = df.iloc[i]['Undervisningens gennemførelse , Øvrige omkostninger']
+        gennemforelse = (df['Undervisningens gennemførelse , Øvrige omkostninger']).to_numpy()
+        alle_CM = (edited_CM['CM beløb']).to_numpy()
 
-        metrik1 = np.round(CM_belob/gennemforelse*100,3)
 
-        metrik2 = np.round(CM_belob/taxameter*100,3)
+        metrik1 = np.round(alle_CM/gennemforelse*100,3)
+
+        metrik2 = np.round(alle_CM/taxameter*100,3)
 
         metrik3 = np.round(gennemforelse/taxameter*100,3)
 
-        st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
+        endelig_df = pd.DataFrame([
+            {"institutionsnummer" : df['Institutions nummer:']}, 
+            {"institutionsnavn" : df.iloc[:,1]},
+            {"Andel af 'Undervisningens gennemførelse, øvrige omkostninger' der består af UNGLI licenser:" : metrik1},
+            {"Andel af undervisningstaxameter der består af UNGLI licenser:" : metrik2},
+            {"Andel af undervisningstaxameter der består af 'Undervisningens gennemførelse, øvrige omkostninger':" : metrik3}
+        ])
+        #st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
+        st.write(endelig_df)
+        #st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser:', value = str(metrik1)+ "%")
+        #st.metric('Andel af undervisningstaxameter der består af UNGLI licenser:', value = str(metrik2) + "%")
+        #st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger":', value = str(metrik3) + "%")
 
-        st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser:', value = str(metrik1)+ "%")
-        st.metric('Andel af undervisningstaxameter der består af UNGLI licenser:', value = str(metrik2) + "%")
-        st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger":', value = str(metrik3) + "%")
-        i += 1
     else:
         st.header('Analyserer fil "' + filename + '"')
 
