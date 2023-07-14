@@ -9,7 +9,7 @@ st.set_page_config(page_title='UNGLI institutionsøkonomi analyse', page_icon="a
 file = filename = 'Regnskabsdata.XLS'
 st.sidebar.subheader('Indlæs din regnskabsdata fil')
 uploaded_files = st.sidebar.file_uploader("Downloades fra https://regnskabsportal.uvm.dk/Accounts/Search.aspx?sm=4.1", accept_multiple_files=True)#, type = 'xlsx')
-antal_inst = st.sidebar.number_input('Indtast antal institutioner i filen', min_value = 1)
+antal_inst = int(st.sidebar.number_input('Indtast antal institutioner i filen', min_value = 1))
 st.sidebar.subheader('Indtast UNGLI information')
 UNGLI_belob = st.sidebar.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)')
 
@@ -21,7 +21,7 @@ def load_multiple(file, num_inst = antal_inst):
     start_cols = [1]
     mult_cols = np.arange(start = 4, stop = 4 + num_inst)
     mult_cols = np.append(start_cols, mult_cols)
-    return pd.read_excel(file, skiprows=4, usecols= mult_cols)
+    return pd.read_excel(file, skiprows=4, usecols = mult_cols)
 
 def load_data(file):
     return pd.read_excel(file, skiprows = 4, usecols = [1,4])
