@@ -68,8 +68,9 @@ if uploaded_files is not None:
         #Taxameter
         taxameter = (df['Undervisningstaxameter']).to_numpy()
         #undervisningsgennemførelse, budgettet licenser kommer fra?
-        gennemforelse = (df["Undervisningens gennemførelse, Øvrige omkostninger"])
-        alle_CM = (edited_CM['UNGLI beløb']).to_numpy()
+        gennemforelse = (df["Undervisningens gennemførelse, Øvrige omkostninger"]).to_numpy()
+
+        alle_CM = (edited_CM['CM beløb']).to_numpy()
 
 
         metrik1 = np.round(alle_CM/gennemforelse*100,3)
