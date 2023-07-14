@@ -46,22 +46,21 @@ if uploaded_files is not None:
         df = df.drop(df.index[0])
 
         CM_info = pd.DataFrame(
-    np.array([(df['Institutions nummer:']).to_numpy(), (df.iloc[:,1]).to_numpy(), np.ones(antal_inst)]).T,
-    columns = ["institutionsnummer", "institutionsnavn", "CM beløb"]
-)
+            np.array([(df['Institutions nummer:']).to_numpy(), (df.iloc[:,1]).to_numpy(), np.ones(antal_inst)]).T,
+            columns = ["institutionsnummer", "institutionsnavn", "CM beløb"]
+            )
         
-        st.dataframe(CM_info)
-        st.write("hej med dig")
         edited_CM = st.data_editor(CM_info, column_config={
-        "institutionsnummer": "Institutions nummer",
-        "institutionsnavn": "Institutions navn",
+        "institutionsnummer": "Institutionsnummer",
+        "institutionsnavn": "Institutionsnavn",
         "CM beløb": st.column_config.NumberColumn(
             "UNGLI beløb",
             help="Indtast antal kroner brugt på UNGLI licenser.",
             min_value=1,
         ),
-        }, hide_index = True,
+        }, hide_index = True, disabled = ["institutionsnummer", "institutionsnavn"]
         )
+
         ### data manipulering, hent info vi skal bruge ###
         #institutionsnummer og navn
         inst_num = df['Institutions nummer:']
@@ -71,7 +70,7 @@ if uploaded_files is not None:
 
         #undervisningsgennemførelse, budgettet licenser kommer fra?
         gennemforelse = (df['Undervisningens gennemførelse , Øvrige omkostninger']).to_numpy()
-        alle_CM = (edited_CM['CM beløb']).to_numpy()
+        alle_CM = (edited_CM['UNGLI beløb']).to_numpy()
 
 
         metrik1 = np.round(alle_CM/gennemforelse*100,3)
