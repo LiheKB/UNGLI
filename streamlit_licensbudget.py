@@ -70,6 +70,7 @@ if uploaded_files is not None:
 
         #undervisningsgennemførelse, budgettet licenser kommer fra?
         gennemforelse = (df['Undervisningens gennemførelse , Øvrige omkostninger']).to_numpy()
+        st.write("hej med dig")
         alle_CM = (edited_CM['UNGLI beløb']).to_numpy()
 
 
