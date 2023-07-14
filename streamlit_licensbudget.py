@@ -67,7 +67,7 @@ if uploaded_files is not None:
         inst_navn = df.iloc[:,1]
         #Taxameter
         taxameter = (df['Undervisningstaxameter']).to_numpy()
-        st.write("hej med dig")
+        st.write(taxameter)
 
 
         #undervisningsgennemførelse, budgettet licenser kommer fra?
