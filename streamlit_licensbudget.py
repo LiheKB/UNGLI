@@ -67,10 +67,11 @@ if uploaded_files is not None:
         inst_navn = df.iloc[:,1]
         #Taxameter
         taxameter = (df['Undervisningstaxameter']).to_numpy()
+        st.write("hej med dig")
+
 
         #undervisningsgennemførelse, budgettet licenser kommer fra?
         gennemforelse = (df['Undervisningens gennemførelse , Øvrige omkostninger'])
-        st.write(gennemforelse)
         alle_CM = (edited_CM['UNGLI beløb']).to_numpy()
 
 
