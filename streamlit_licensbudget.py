@@ -45,11 +45,13 @@ if uploaded_files is not None:
         df.columns = df.iloc[0]
         df = df.drop(df.index[0])
 
-        CM_info = pd.DataFrame([
-            {"institutionsnummer" : (df['Institutions nummer:']).to_numpy(), 
-            "institutionsnavn" : (df.iloc[:,1]).to_numpy(),
-            'CM beløb' : np.ones(antal_inst)}
-        ])
+        #CM_info = pd.DataFrame([
+           # {"institutionsnummer" : (df['Institutions nummer:']).to_numpy(), 
+          #  "institutionsnavn" : (df.iloc[:,1]).to_numpy(),
+         #   'CM beløb' : np.ones(antal_inst)}
+        #])
+        CM_info = pd.DataFrame(data = np.array(df['Institutions nummer:'].to_numpy(), df.iloc[:,1].to_numpy(), np.ones(antal_inst)), columns = ["institutionsnummer", "institutionsnavn", "CM beløb"])
+        
         st.dataframe(CM_info)
         st.write("hej med dig")
         edited_CM = st.data_editor(CM_info, column_config={
