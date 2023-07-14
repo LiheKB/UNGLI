@@ -50,6 +50,7 @@ if uploaded_files is not None:
             "institutionsnavn" : (df.iloc[:,1]).to_numpy(),
             'CM beløb' : np.ones(antal_inst)}
         ])
+        st.dataframe(CM_info)
         st.write("hej med dig")
         edited_CM = st.data_editor(CM_info, column_config={
         "institutionsnummer": "Institutions nummer",
@@ -60,7 +61,7 @@ if uploaded_files is not None:
             min_value=1,
         ),
         }, hide_index = True,
-    )
+        )
         ### data manipulering, hent info vi skal bruge ###
         #institutionsnummer og navn
         inst_num = df['Institutions nummer:']
