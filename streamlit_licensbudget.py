@@ -80,11 +80,11 @@ if uploaded_files is not None:
         metrik3 = np.round(gennemforelse/taxameter*100,3)
 
         ende_data = np.array([df['Institutions nummer:'].to_numpy(), df.iloc[:,1].to_numpy(), metrik1, metrik2, metrik3])
-        ende_kol = ["institutionsnummer", "institutionsnavn", "Andel af 'Undervisningens gennemførelse, øvrige omkostninger' der består af UNGLI licenser:", "Andel af undervisningstaxameter der består af UNGLI licenser:", "Andel af undervisningstaxameter der består af 'Undervisningens gennemførelse, øvrige omkostninger':"]
+        ende_kol = ["Institutionsnummer", "Institutionsnavn", "Andel af 'Undervisningens gennemførelse, øvrige omkostninger' der består af UNGLI licenser:", "Andel af undervisningstaxameter der består af UNGLI licenser:", "Andel af undervisningstaxameter der består af 'Undervisningens gennemførelse, øvrige omkostninger':"]
         endelig_df = pd.DataFrame(ende_data.T, columns = ende_kol)
 
         #st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
-        st.dataframe(endelig_df, use_container_width=True)
+        st.dataframe(endelig_df, use_container_width=True, hide_index = True)
         #st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser:', value = str(metrik1)+ "%")
         #st.metric('Andel af undervisningstaxameter der består af UNGLI licenser:', value = str(metrik2) + "%")
         #st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger":', value = str(metrik3) + "%")
