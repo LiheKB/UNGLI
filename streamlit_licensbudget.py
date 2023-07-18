@@ -68,6 +68,7 @@ if uploaded_files is not None:
         #Taxameter
         taxameter = (df['Undervisningstaxameter']).to_numpy(dtype = float)
         #undervisningsgennemførelse, budgettet licenser kommer fra?
+        st.write(taxameter)
         gennemforelse = (df["Undervisningens gennemførelse, Øvrige omkostninger"]).to_numpy(dtype = float)
 
         alle_CM = (edited_CM['CM beløb']).to_numpy(dtype = float)
