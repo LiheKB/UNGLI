@@ -23,14 +23,14 @@ def load_data(file):
     return pd.read_excel(file, skiprows = 4, usecols = [1,4])
 
 st.title('UNGLI institutionsøkonomi analyse')
-st.write('Formålet med denne app er at give et hurtigt overblik over hvor meget UNGLI licenser fylder i budgettet for en given institution.')
+st.write('Formålet med denne app er at give et hurtigt overblik over hvor meget UNGLI licenser fylder i budgettet for en given institution. Oplever du problemer med appen bedes du kontakte ALFs analysegruppe.')
 st.write('For at bruge appen skal du have en fil trukket fra Regnskabsportalen i .XLS format samt et estimat af hvor mange penge institutionen bruger på UNGLI licenser (dette kan formentlig aflæses i ConsortiaManager).')
 st.write('Det er muligt at analysere flere filer og institutioner samtidig. Vær opmærksom på at hvis der skal analyseres flere filer skal antallet af institutioner i hver fil være det samme, for at undgå fejl på denne side.')
 st.write('Når dine filer er accepteret vil du se en tabel, hvor du skal indtaste beløbet der bruges på UNGLI licenser for den givne institution. Herefter udregnes de ønskede metrikker baseret på information der aflæses af regnskabsfilerne.')
+st.write('*Det bliver forhåbentlig muligt at bruge et API kald til ConsortiManager i fremtiden, så CM data ikke skal tastes manuelt ind. Dog virker deres API ikke på nuværende tidspunkt med vores app. Bliver det muligt senere vil vi forsøge at implementere det :-).*')
 st.write('Upload og indtast antal institutioner til venstre.')
 
 if uploaded_files is not None:
-    st.write(uploaded_files)
 
     for uploaded_file in uploaded_files:
         filename = uploaded_file.name
@@ -93,4 +93,4 @@ if uploaded_files is not None:
 else:
     st.write("Ingen fil uploadet :-(")
 
-st.write('Dette er sidste linje kode i scriptet, hvis du ser denne tekst er appen kørt uden problemer :-)')
+st.write('*Dette er sidste linje kode i scriptet, hvis du ser denne tekst er appen kørt uden problemer :-) Appen er senest opdateret 25. juli 2023 af Linea Hedemark*')
