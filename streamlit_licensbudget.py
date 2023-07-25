@@ -26,7 +26,7 @@ st.title('UNGLI institutionsøkonomi analyse')
 st.write('Formålet med denne app er at give et hurtigt overblik over hvor meget UNGLI licenser fylder i budgettet for en given institution.')
 st.write('For at bruge appen skal du have en fil trukket fra Regnskabsportalen i .XLS format samt et estimat af hvor mange penge institutionen bruger på UNGLI licenser (dette kan formentlig aflæses i ConsortiaManager).')
 st.write('Det er muligt at analysere flere filer og institutioner samtidig. Vær opmærksom på at hvis der skal analyseres flere filer skal antallet af institutioner i hver fil være det samme, for at undgå fejl på denne side.')
-st-write('Når dine filer er accepteret vil du se en tabel, hvor du skal indtaste beløbet der bruges på UNGLI licenser for den givne institution. Herefter udregnes de ønskede metrikker baseret på information der aflæses af regnskabsfilerne.')
+st.write('Når dine filer er accepteret vil du se en tabel, hvor du skal indtaste beløbet der bruges på UNGLI licenser for den givne institution. Herefter udregnes de ønskede metrikker baseret på information der aflæses af regnskabsfilerne.')
 st.write('Upload og indtast antal institutioner til venstre.')
 
 if uploaded_files is not None:
