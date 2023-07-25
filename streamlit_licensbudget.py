@@ -32,7 +32,7 @@ st.write('For at bruge appen skal du have en fil trukket fra Regnskabsportalen i
 st.write('Upload og indtast informationen til venstre.')
 
 if uploaded_files is not None:
-    st.write("Ny fil uploadet.")
+
     for uploaded_file in uploaded_files:
         filename = uploaded_file.name
         file = uploaded_file
@@ -50,6 +50,7 @@ if uploaded_files is not None:
             columns = ["institutionsnummer", "institutionsnavn", "CM beløb"]
             )
         
+        st.write('I nedenstående tabel bedes du indtaste beløbet der bruges på UNGLI licenser for hver af de ønskede institutioner for det givne år. Beløbet findes i ConsortiaManager.\nDu ændrer beløbet ved at klikke på den ønskede celle, indtaste tallet og trykke "Enter".')
         edited_CM = st.data_editor(CM_info, column_config={
         "institutionsnummer": "Institutionsnummer",
         "institutionsnavn": "Institutionsnavn",
@@ -60,6 +61,7 @@ if uploaded_files is not None:
         ),
         }, hide_index = True, disabled = ["institutionsnummer", "institutionsnavn"]
         )
+
 
         ### data manipulering, hent info vi skal bruge ###
         #institutionsnummer og navn
@@ -80,16 +82,17 @@ if uploaded_files is not None:
         metrik3 = np.round(gennemforelse/taxameter*100,3)
 
         ende_data = np.array([df['Institutions nummer:'].to_numpy(), df.iloc[:,1].to_numpy(), metrik1, metrik2, metrik3])
-        ende_kol = ["Institutionsnummer", "Institutionsnavn", "Andel af 'Undervisningens gennemførelse, øvrige omkostninger'  \nline der består af UNGLI licenser:", "Andel af undervisningstaxameter der består af UNGLI licenser:", "Andel af undervisningstaxameter der består af 'Undervisningens gennemførelse, øvrige omkostninger':"]
+        ende_kol = ["Institutionsnummer", "Institutionsnavn", "Andel af 'Undervisningens gennemførelse, øvrige omkostninger' der består af UNGLI licenser:", "Andel af undervisningstaxameter der består af UNGLI licenser:", "Andel af undervisningstaxameter der består af 'Undervisningens gennemførelse, øvrige omkostninger':"]
         endelig_df = pd.DataFrame(ende_data.T, columns = ende_kol)
 
+        st.write("I nedenstående tabel ser du de beregnede metrikker. Formatering gør at det kan være nødvendigt at 'scrolle' igennem tabellen for at se det hele. Du kan også vælge at downloade de beregnede tabeller som en fil.")
         #st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
         st.dataframe(endelig_df, use_container_width=True, hide_index = True)
-        #st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser:', value = str(metrik1)+ "%")
-        #st.metric('Andel af undervisningstaxameter der består af UNGLI licenser:', value = str(metrik2) + "%")
-        #st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger":', value = str(metrik3) + "%")
+
+        st.caption('Ovenstående tabel viser institutionsnummer, institutionsnavn, Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser, Andel af undervisningstaxameter der består af UNGLI licenser og Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger".')
 
 else:
+    st.write("Ingen fil uploadet :-(")
     st.header('Analyserer fil "' + filename + '"')
 
     df = load_multiple(file)
