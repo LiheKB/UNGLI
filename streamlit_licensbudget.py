@@ -30,6 +30,7 @@ st.write('Når dine filer er accepteret vil du se en tabel, hvor du skal indtast
 st.write('Upload og indtast antal institutioner til venstre.')
 
 if uploaded_files is not None:
+    st.write(uploaded_files)
 
     for uploaded_file in uploaded_files:
         filename = uploaded_file.name
