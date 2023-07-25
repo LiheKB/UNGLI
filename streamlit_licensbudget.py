@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-#import matplotlib.pyplot as plt
-#import streamlit.components.v1 as components
 
 st.set_page_config(page_title='UNGLI institutionsøkonomi analyse', page_icon="appikon.jpg", layout='centered', initial_sidebar_state="expanded")
 
@@ -13,12 +11,7 @@ st.sidebar.write('Er der færre institutioner i filen end angivet i nedenståend
 
 uploaded_files = st.sidebar.file_uploader("Downloades fra https://regnskabsportal.uvm.dk/Accounts/Search.aspx?sm=4.1", accept_multiple_files=True)#, type = 'xlsx')
 antal_inst = int(st.sidebar.number_input('Indtast antal institutioner i filen', min_value = 1))
-#st.sidebar.subheader('Indtast UNGLI information')
-#UNGLI_belob = st.sidebar.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)')
 
-#if uploaded_file is not None:
-#    file = uploaded_file
-#    filename = uploaded_file.name
 
 def load_multiple(file, num_inst = antal_inst):
     start_cols = [1]
