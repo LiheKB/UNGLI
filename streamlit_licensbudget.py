@@ -8,10 +8,13 @@ st.set_page_config(page_title='UNGLI institutionsøkonomi analyse', page_icon="a
 
 file = filename = 'Regnskabsdata.XLS'
 st.sidebar.subheader('Indlæs din regnskabsdata fil')
+st.sidebar.write('Ønsker du at analysere flere filer samtidig (eksempelvis for at sammenligne på tværs af årstal) skal du være opmærksom på at have det samme antal institutioner i hver fil.')
+st.sidebar.write('Er der færre institutioner i filen end angivet i nedenstående felt vil du opleve fejl på siden.')
+
 uploaded_files = st.sidebar.file_uploader("Downloades fra https://regnskabsportal.uvm.dk/Accounts/Search.aspx?sm=4.1", accept_multiple_files=True)#, type = 'xlsx')
 antal_inst = int(st.sidebar.number_input('Indtast antal institutioner i filen', min_value = 1))
-st.sidebar.subheader('Indtast UNGLI information')
-UNGLI_belob = st.sidebar.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)')
+#st.sidebar.subheader('Indtast UNGLI information')
+#UNGLI_belob = st.sidebar.number_input('Indtast det beløb institutionen bruger på UNGLI licenser (findes i ConsortiaManager)')
 
 #if uploaded_file is not None:
 #    file = uploaded_file
@@ -27,9 +30,11 @@ def load_data(file):
     return pd.read_excel(file, skiprows = 4, usecols = [1,4])
 
 st.title('UNGLI institutionsøkonomi analyse')
-st.write('Formålet med denne lille app er at give et hurtigt overblik over hvor meget UNGLI licenser fylder i budgettet for en given institution.')
-st.write('For at bruge appen skal du have en fil trukket fra Regnskabsportalen i .XLS format samt et estimat af hvor mange penge institutionen bruger på UNGLI licenser (dette kan formentlig aflæses i ConsortiaManager)')
-st.write('Upload og indtast informationen til venstre.')
+st.write('Formålet med denne app er at give et hurtigt overblik over hvor meget UNGLI licenser fylder i budgettet for en given institution.')
+st.write('For at bruge appen skal du have en fil trukket fra Regnskabsportalen i .XLS format samt et estimat af hvor mange penge institutionen bruger på UNGLI licenser (dette kan formentlig aflæses i ConsortiaManager).')
+st.write('Det er muligt at analysere flere filer og institutioner samtidig. Vær opmærksom på at hvis der skal analyseres flere filer skal antallet af institutioner i hver fil være det samme, for at undgå fejl på denne side.')
+st-write('Når dine filer er accepteret vil du se en tabel, hvor du skal indtaste beløbet der bruges på UNGLI licenser for den givne institution. Herefter udregnes de ønskede metrikker baseret på information der aflæses af regnskabsfilerne.')
+st.write('Upload og indtast antal institutioner til venstre.')
 
 if uploaded_files is not None:
 
@@ -37,7 +42,7 @@ if uploaded_files is not None:
         filename = uploaded_file.name
         file = uploaded_file
         st.header('Analyserer fil "' + filename + '"')
-        ##her går den i ståå??
+        
         df = load_multiple(file)
         #transponér så rækker fra excel passer med kolonner i pandas
         df = df.T
@@ -93,40 +98,5 @@ if uploaded_files is not None:
 
 else:
     st.write("Ingen fil uploadet :-(")
-    st.header('Analyserer fil "' + filename + '"')
 
-    df = load_multiple(file)
-        #transponér så rækker fra excel passer med kolonner i pandas
-    df = df.T
-        #definér rækken som kolonnenavne, og fjern dernæst rækken som "datarække"
-    df.columns = df.iloc[0]
-    df = df.drop(df.index[0])
-
-        ### data manipulering, hent info vi skal bruge ###
-        #institutionsnummer og navn
-    inst_num = df.iloc[0]['Institutions nummer:']
-    inst_navn = df.iloc[0][1]
-
-        #Taxameter
-    taxameter = df.iloc[0]['Undervisningstaxameter']
-
-        #undervisningsgennemførelse, budgettet licenser kommer fra?
-    gennemforelse = df.iloc[0]['Undervisningens gennemførelse , Øvrige omkostninger']
-
-    ### Vi vil gerne have tre metrikker: 
-    ## 1) udgift til UNGLI divideret med "Undervisningens gennemførelse..."
-    ## 2) udgift til UNGLI divideret med undervisningstaxameter
-    ## 3) Undervisningens gennemførelse divideret med taxameter
-
-    metrik1 = np.round(UNGLI_belob/gennemforelse*100,3)
-
-    metrik2 = np.round(UNGLI_belob/taxameter*100,3)
-
-    metrik3 = np.round(gennemforelse/taxameter*100,3)
-
-    st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
-
-    st.metric('Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser:', value = str(metrik1)+ "%")
-    st.metric('Andel af undervisningstaxameter der består af UNGLI licenser:', value = str(metrik2) + "%")
-    st.metric('Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger":', value = str(metrik3) + "%")
-
+st.write('Dette er sidste linje kode i scriptet, hvis du ser denne tekst er appen kørt uden problemer :-)')
