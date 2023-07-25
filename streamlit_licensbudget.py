@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.set_page_config(page_title='UNGLI institutionsøkonomi analyse', page_icon="appikon.jpg", layout='centered', initial_sidebar_state="expanded")
+st.set_page_config(page_title='UNGLI institutionsøkonomi analyse', page_icon="appikon.jpg", layout='wide', initial_sidebar_state="expanded")
 
 file = filename = 'Regnskabsdata.XLS'
 st.sidebar.subheader('Indlæs din regnskabsdata fil')
