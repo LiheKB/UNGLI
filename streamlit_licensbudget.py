@@ -102,7 +102,7 @@ if uploaded_files is not None:
         for i in range(len(df_list)):
             (df_list[i]).to_excel(writer, sheet_name = name_list[i], index = False)
 
-    return writer.close()
+        return writer.close()
 
     final_file = dfToExcel(gem_tabel, gem_filnavne)
 
