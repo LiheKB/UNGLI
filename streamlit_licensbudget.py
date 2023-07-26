@@ -90,25 +90,11 @@ if uploaded_files is not None:
         gem_tabel.append(endelig_df)
         gem_filnavne.append(filename)
 
-        st.write("I nedenstående tabel ser du de beregnede metrikker. Formatering gør at det kan være nødvendigt at 'scrolle' igennem tabellen for at se det hele. Du kan også vælge at downloade de beregnede tabeller som en fil.")
+        st.write("I nedenstående tabel ser du de beregnede metrikker. Formatering gør at det kan være nødvendigt at 'scrolle' igennem tabellen for at se det hele.")
         #st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
         st.dataframe(endelig_df, use_container_width=True, hide_index = True)
 
         st.caption('Ovenstående tabel viser institutionsnummer, institutionsnavn, Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser, Andel af undervisningstaxameter der består af UNGLI licenser og Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger".')
-    #næste: tilføj download knap til at downloade tabeller
-    st.write(len(gem_tabel))
-    
-    @st.cache_resource
-    def dfToExcel(df_list = gem_tabel, name_list= gem_filnavne):
-        writer = pd.ExcelWriter('institutionsanalyse.xlsx')
-        for i in range(len(df_list)):
-            (df_list[i]).to_excel(writer, sheet_name = name_list[i], index = False)
-
-        return writer.close()
-
-    final_file = dfToExcel(gem_tabel, gem_filnavne)
-
-    st.download_button(label = "Download tabeller som Excel fil", data = final_file, file_name = 'resultat.xlsx', mime='text/csv')
 else:
     st.write("Ingen fil uploadet :-(")
 
