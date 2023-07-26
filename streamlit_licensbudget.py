@@ -33,6 +33,7 @@ st.write('Upload og indtast antal institutioner til venstre.')
 if uploaded_files is not None:
     gem_tabel = []
     gem_filnavne = []
+    st.write(len(gem_tabel))
     for uploaded_file in uploaded_files:
         filename = uploaded_file.name
         file = uploaded_file
@@ -95,7 +96,8 @@ if uploaded_files is not None:
 
         st.caption('Ovenstående tabel viser institutionsnummer, institutionsnavn, Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser, Andel af undervisningstaxameter der består af UNGLI licenser og Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger".')
     #næste: tilføj download knap til at downloade tabeller
-
+    st.write(len(gem_tabel))
+    
     @st.cache_resource
     def dfToExcel(df_list = gem_tabel, name_list= gem_filnavne):
         writer = pd.ExcelWriter('institutionsanalyse.xlsx')
