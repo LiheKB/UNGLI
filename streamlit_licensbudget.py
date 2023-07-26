@@ -31,9 +31,7 @@ st.write('*Det bliver forhåbentlig muligt at bruge et API kald til ConsortiMana
 st.write('Upload og indtast antal institutioner til venstre.')
 
 if uploaded_files is not None:
-    gem_tabel = []
-    gem_filnavne = []
-    st.write(len(gem_tabel))
+
     for uploaded_file in uploaded_files:
         filename = uploaded_file.name
         file = uploaded_file
@@ -85,10 +83,6 @@ if uploaded_files is not None:
         ende_data = np.array([df['Institutions nummer:'].to_numpy(), df.iloc[:,1].to_numpy(), metrik1, metrik2, metrik3])
         ende_kol = ["Institutionsnummer", "Institutionsnavn", "Andel af 'Undervisningens gennemførelse, øvrige omkostninger' der består af UNGLI licenser:", "Andel af undervisningstaxameter der består af UNGLI licenser:", "Andel af undervisningstaxameter der består af 'Undervisningens gennemførelse, øvrige omkostninger':"]
         endelig_df = pd.DataFrame(ende_data.T, columns = ende_kol)
-
-        #gem endelige tabel i liste
-        gem_tabel.append(endelig_df)
-        gem_filnavne.append(filename)
 
         st.write("I nedenstående tabel ser du de beregnede metrikker. Formatering gør at det kan være nødvendigt at 'scrolle' igennem tabellen for at se det hele.")
         #st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
