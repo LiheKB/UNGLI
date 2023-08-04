@@ -85,7 +85,7 @@ if uploaded_files is not None:
         endelig_df = pd.DataFrame(ende_data.T, columns = ende_kol)
 
         st.write("I nedenstående tabel ser du de beregnede metrikker. Formatering gør at det kan være nødvendigt at 'scrolle' igennem tabellen for at se det hele. Vær opmærksom på at værdier angivet som 'andele' er angivet i %.")
-        #st.subheader('Analyse af ' + inst_navn + ', institutionsnummer: ' + str(inst_num))
+        
         st.dataframe(endelig_df, use_container_width=True, hide_index = True)
 
         st.caption('Ovenstående tabel viser institutionsnummer, institutionsnavn, Andel af "Undervisningens gennemførelse, øvrige omkostninger" der består af UNGLI licenser, Andel af undervisningstaxameter der består af UNGLI licenser og Andel af undervisningstaxameter der består af "Undervisningens gennemførelse, øvrige omkostninger". Andele angives i %.')
