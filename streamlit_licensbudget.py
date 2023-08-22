@@ -2,23 +2,42 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+#layout sat til wide så app bruger hele bredden af browseren
 st.set_page_config(page_title='UNGLI institutionsøkonomi analyse', page_icon="appikon.jpg", layout='wide', initial_sidebar_state="expanded")
 
+#filnavn på fil der bliver brugt som stand-in, indtil en ny fil uploades. 
+#er måske forældet, da der ikke bruges sådan en længere?? 
+#piller ikke ved det nu
 file = filename = 'Regnskabsdata.XLS'
+# .sidebar indikerer at det der henvises til bliver skrevet i en pop-ud bar til venstre i browseren
 st.sidebar.subheader('Indlæs din regnskabsdata fil')
 st.sidebar.write('Ønsker du at analysere flere filer samtidig (eksempelvis for at sammenligne på tværs af årstal) skal du være opmærksom på at have det samme antal institutioner i hver fil.')
 st.sidebar.write('Er der færre institutioner i filen end angivet i nedenstående felt vil du opleve fejl på siden.')
 
+#file uploader, så bruger kan uploade filer til analyse
+# accept multiple files = True, så man kan uploade flere års rapporter i samme omgang
 uploaded_files = st.sidebar.file_uploader("Downloades fra https://regnskabsportal.uvm.dk/Accounts/Search.aspx?sm=4.1", accept_multiple_files=True)#, type = 'xlsx')
 antal_inst = int(st.sidebar.number_input('Indtast antal institutioner i filen', min_value = 1))
 
 
 def load_multiple(file, num_inst = antal_inst):
+    """
+    input:
+    file -> (str): kommer fra file_uploader
+    num_inst = (int) antallet af institutioner der ønskes analyseres, 
+    må ikke overstige antal af institutioner i fil
+
+    output: 
+    pd.DataFrame med indlæst regnskabsfil
+    """
+    #kolonnerne i regnskabsfilerne er sat op lidt specielt, så første institution svarer til anden kolonne
+    #Vi indlæser kun den kolonne der indeholder information om institutionerne
     start_cols = [1]
     mult_cols = np.arange(start = 4, stop = 4 + num_inst)
     mult_cols = np.append(start_cols, mult_cols)
     return pd.read_excel(file, skiprows=4, usecols = mult_cols)
 
+#hvis der kun skal uploades én fil med én inst
 def load_data(file):
     return pd.read_excel(file, skiprows = 4, usecols = [1,4])
 
@@ -68,12 +87,12 @@ if uploaded_files is not None:
         inst_navn = df.iloc[:,1]
         #Taxameter
         taxameter = (df['Undervisningstaxameter']).to_numpy(dtype = float)
-        #undervisningsgennemførelse, budgettet licenser kommer fra?
+        #undervisningsgennemførelse, budgettet licenser kommer fra
         gennemforelse = (df["Undervisningens gennemførelse, Øvrige omkostninger"]).to_numpy(dtype = float)
 
         alle_CM = (edited_CM['CM beløb']).to_numpy(dtype = float)
 
-
+        #udregn alle metrikker i procent, med tre decimaler
         metrik1 = np.round(alle_CM/gennemforelse*100,3)
 
         metrik2 = np.round(alle_CM/taxameter*100,3)
