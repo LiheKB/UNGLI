@@ -1,3 +1,6 @@
 Filerne i den her mappe er kopieret fra https://github.com/LiheKB/UNGLI. Folderen bruges via streamlit til at hoste en app. Man logger ind på streamlit via en github profil, hvor folderen er gemt. Så følger man streamlits guide til at publicere appen og holde den i gang.
 
+
+OBS: filerne der hentes fra UVMs portal er i .XLS format, og ikke de nyere Excel formater (.xlsx). Det kan give lidt problemer med appen hvis man er kommet til at konvertere filerne, hvis man ex. har åbnet dem i Excel, og så trykket "Gem som". Det skal man bare lige være opmærksom på. 
+
 -LIHE, August 2023
