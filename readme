@@ -2,5 +2,5 @@ Filerne i den her mappe er kopieret fra https://github.com/LiheKB/UNGLI. Foldere
 
 
 OBS: filerne der hentes fra UVMs portal er i .XLS format, og ikke de nyere Excel formater (.xlsx). Det kan give lidt problemer med appen hvis man er kommet til at konvertere filerne, hvis man ex. har åbnet dem i Excel, og så trykket "Gem som". Det skal man bare lige være opmærksom på. 
-
+Det er i linje 86-91 i scriptet der kan give problemer, hvis det er noget der bliver rigtig irriterende på sigt (hvis filerne pludselig SKAL være .xlsx) kunne man måske ændre de linjer til at vælges ud med Pandas .loc[] i stedet for ['Kolonnenavn']
 -LIHE, August 2023
